@@ -30,6 +30,7 @@ Most organizations rely on expensive, third-party SIEM platforms that offer litt
 - ☁️ **Cloud-agnostic** — no dependency on AWS, Azure, or SaaS SIEM vendors
 - 🔧 **Fully customizable** — branding, alert thresholds, integrations, all owned by you
 - 💰 **Cost-effective** — no per-seat licensing or data ingestion costs
+- 🔒 **Data privacy by design** — all security logs, events, and audit trails stay within your own network perimeter; no telemetry, no third-party data sharing, full compliance control
 
 ---
 
