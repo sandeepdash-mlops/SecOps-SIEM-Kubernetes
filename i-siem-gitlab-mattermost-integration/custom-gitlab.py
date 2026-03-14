@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 # ── GitLab configuration – edit these or export as env vars ──────────────────
 GITLAB_URL        = "https://gitlab.example.com/"        # e.g. https://gitlab.com
-GITLAB_TOKEN      = "iserveu-Tjsguwqod-owu29YDhwuw"         # Project / personal access token
+GITLAB_TOKEN      = "userviei-Piwhdsbdiw-piwbd85jhwoj"         # Project / personal access token
 GITLAB_PROJECT_ID = "2379"                                 # numeric project id
 SEVERITY_THRESHOLD = 8                                 # fire when level > this value
 
