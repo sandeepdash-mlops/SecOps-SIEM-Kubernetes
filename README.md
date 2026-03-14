@@ -79,6 +79,85 @@ Rebranded the SIEM login interface to the i-SIEM identity — demonstrating full
 
 ---
 
+## 🚀 Deployment Steps
+
+### 1 — Generate TLS Certificates
+Generated separate TLS certificates for the indexer cluster and the dashboard HTTPS layer using custom shell scripts under the `isiem/certs/` directory.
+
+### 2 — Deploy the Stack
+Applied the full Kubernetes manifest set using Kustomize for the local environment overlay.
+
+### 3 — Bootstrap OpenSearch Security
+Exec'd into the indexer pod and ran the OpenSearch `securityadmin.sh` tool to initialize the security configuration — loading the admin certs, CA, and cluster security settings directly against the running node.
+
+### 4 — Restart Services
+Rolled out a fresh deployment of the i-SIEM Dashboard and recycled the Manager pods (master + worker) to pick up the new security configuration cleanly.
+
+### 5 — Apply Custom Branding
+Updated the namespace in `branding.conf` to match the deployment target, then ran `apply-login-branding.sh` to push the i-SIEM login page branding live.
+
+---
+
+## 🚀 Deployment Steps
+
+### Step 1 — Generate TLS Certificates
+
+Generate certificates for the indexer cluster and dashboard HTTPS separately:
+
+```bash
+isiem/certs/indexer_cluster/generate_certs.sh
+isiem/certs/dashboard_http/generate_certs.sh
+```
+
+### Step 2 — Deploy the Stack
+
+```bash
+kubectl apply -k envs/local-env/
+```
+
+### Step 3 — Initialize Security Configuration
+
+Exec into the indexer pod and run the OpenSearch security admin tool to apply the security configuration:
+
+```bash
+kubectl exec -it isiem-indexer-0 -n isiem -- /bin/bash
+
+export INSTALLATION_DIR=/usr/share/isiem-indexer
+export CONFIG_DIR=$INSTALLATION_DIR/config
+CACERT=$CONFIG_DIR/certs/root-ca.pem
+KEY=$CONFIG_DIR/certs/admin-key.pem
+CERT=$CONFIG_DIR/certs/admin.pem
+export JAVA_HOME=/usr/share/isiem-indexer/jdk
+
+bash /usr/share/isiem-indexer/plugins/opensearch-security/tools/securityadmin.sh \
+  -cd $CONFIG_DIR/opensearch-security/ \
+  -nhnv \
+  -cacert $CACERT \
+  -cert $CERT \
+  -key $KEY \
+  -p 9200 -icl \
+  -h $NODE_NAME
+
+exit
+```
+
+### Step 4 — Restart Dashboard & Manager Pods
+
+```bash
+kubectl rollout restart deploy/isiem-dashboard -n isiem
+kubectl delete -n isiem pod/isiem-manager-master-0 pod/isiem-manager-worker-0
+```
+
+### Step 5 — Apply Custom i-SIEM Branding
+
+Update the namespace in `branding.conf` to match your deployment namespace, then run:
+
+```bash
+./apply-login-branding.sh
+```
+
+---
+
 ## 💬 Connect
 
 If you found this project helpful or have any questions, feel free to reach out!
