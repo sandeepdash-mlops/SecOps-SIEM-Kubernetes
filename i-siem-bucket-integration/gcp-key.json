@@ -1,0 +1,13 @@
+{
+"type": "service_account",
+  "project_id": "internal-txt-tools",
+  "private_key_id": "0bge22fyyuf778hfr0ijhhgtfgfhgg443ffggggy",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nJDGUVUVUHVVIHTRFHHUYGhyuygeueywghsyHYWIQOCCNJEHYIQPFGDID//9XivnW\nN2p7mLrqg2rCGJ4sYNu6Nzwr/+k1SXyEl7crC+HHML95BhvZ995DNaDkuifhA9T2\n+0yK7tN2M5Hcl2kMeOe5z/f5RiUfBzgxwe7GV49x3gECr7fvXXKa08He/AcUcDvJ\n9Ff0uhRqyWA159ndH79kGe5+65pnKtOt0VD26/0/oRDlWJyUZ3i/0ym2NleG2PFB\nGZrpvOMxj4HACce72XRdLq9BTB1dL83JSv0LyapilzYBFUlUhpkCqnGthpiABx9r\nNwRX4j3myJvikK90r//2qknkdvGaRB9CcLMxiaJDCk6S9PCN71553CqbT3LDzgno\nDD4sWUMzAgMBAAECggEADmRcvFtzGYwtukSfU1hL6RJRUEEcX6ip4VVHPFZ4LG9S\nzzQ7lfeuNPzlnKl9+zQZ08j2a8oO3b8K02DhhHeJ30AKCF7pURO6iuPe/eyLcyXd\nET7p8hF5AIZwCXVhraQsXplzIbXTXo3gEdZAQm8+8ySZAJxWmf8/WHHrJmYMDS3b\nY/FBv9k+WBndwuZvkOiRMDsUkQCOQptfTfQcejUY89XzXeAks0Diw5E1WWZU8vpI\nftdmcdRkV8vpRdV/A6309t1yWS3xRi+9tGGLcjSWAlDh1mLv6Eepcc/FAhU5yCLD\nIG/8AJPgt0mIRdIHspDvYVuczJqAPABEPIw46BgrlQKBgQDuQkm2Ih6u1wIxo1zX\nb4o8mBVxWw+RWOZTd1bQ/L235T9xxSSupbmqcm1XmlvNBAtzO06LNz38f38D1MBS\ng2D2gcR0T+JLojLD6Jcom9PRmXz2IPuaN9K0UT7PTx089IBS4OGDtNHTfKFJVj4W\n64NNHXaMugLct1t8FTDLxyyynwKBgQDswh7A1OwI+6vUDt4MaYslM6gFzM4+1Bxt\nFiNo3w61izwLkJbHAjvG5k0k5nElLfpfF6p+QZT4AWaoTjIqgkO1abLutKwT7GQy\nmHf6XslshGInwjGjQ6X2IAJwsb6L/NcCpKe1qJAjgqo8RIA3WEjYYMsJ2Nk62B35\nVhMCa1Ra7QKBgF9M+Hr3rto0elYsh+hMXzjZhEoxKEr1Cjv8kidJ0QELm5MATinl\ndBxvZLkTrwCUS5gt8r7Qu+SRgtafdMYMcu5m/ZOgmF20ZSXjlQLTQainAkrY6orH\nJWqmzL7TYFiPW/zKoqmx2/QB9+mDq5YzYfOog1DK3nY2iUtalogMBR71AoGAbB0s\n+/N/IY8DZR+w6Ewd/Uv8c0GWAPzNSkcsvkv1pJNDRSiuoYv0jhxGqA4PJuI7Dcd5\n1JPQGfxRy5OBtwWrM6Fj0ztvxN1S2APl7c/w/Pvq8qrsDdjrZVwyoRGZqMU5zfww\nlXS29XBKmqDRR/Sptx1kOkfq0sMz1NModRdb+vUCgYAwUYgBelxx+oo3Kzk5x/es\nJqQFmUrbZhfYX0NaN+1OlybFHCA8oqaJGCj7ci5dU3W0rllnf9eGBUTjgf+iXJpN\nE0S7p9fWigWY/Q+26JZbjOoRL4jYA0RM0f0dmLKJBEU/iqUPETqVKp8xCGDkLAGE\nfH5bgJBEYxPvbfH7dnVKqQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "wazuh-log-import-bucket@internal-txt-tools.iam.gserviceaccount.com",
+  "client_id": "113458164469491258989",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/wazuh-log-import-bucket%40internal-txt-tools.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+} 

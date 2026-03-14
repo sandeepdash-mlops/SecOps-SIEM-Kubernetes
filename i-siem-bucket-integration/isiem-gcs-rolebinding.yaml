@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: isiem-gcs-sync-rolebinding
+  namespace: isiem
+subjects:
+  - kind: ServiceAccount
+    name: isiem-gcs-sync-sa
+    namespace: isiem
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: isiem-gcs-sync-role
+

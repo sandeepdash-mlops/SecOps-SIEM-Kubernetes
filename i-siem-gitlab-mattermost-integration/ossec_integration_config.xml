@@ -1,0 +1,29 @@
+<!--
+  ============================================================
+  Add these <integration> blocks inside your <ossec_config>
+  in /var/ossec/etc/ossec.conf on the Wazuh MANAGER master pod.
+
+  kubectl exec -n isiem isiem-manager-master-0 -- \
+    vi /var/ossec/etc/ossec.conf
+  ============================================================
+-->
+
+<!-- ── GitLab Issues: CRITICAL alerts (level > 15) ─────────── -->
+<integration>
+  <name>custom-gitlab</name>
+  <level>16</level>
+  <alert_format>json</alert_format>
+</integration>
+
+<!-- ── Mattermost: HIGH alerts (level 12–15) ────────────────── -->
+<integration>
+  <name>custom-mattermost</name>
+  <level>12</level>
+  <max_level>15</max_level>
+  <alert_format>json</alert_format>
+</integration>
+
+<!--
+  NOTE: If you also want Mattermost to receive CRITICAL (≥16) alerts
+  in addition to GitLab, remove the <max_level> tag above.
+-->

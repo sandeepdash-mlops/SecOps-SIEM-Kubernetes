@@ -1,0 +1,82 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: isiem-gcs-sync
+  namespace: isiem
+spec:
+  schedule: "55 15 * * *"   # 3:55 PM
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: isiem-gcs-sync-sa
+          restartPolicy: OnFailure
+          containers:
+            - name: gcs-sync
+              image: google/cloud-sdk:latest
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  set -e
+
+                  echo "=== Wazuh → GCS Smart Sync Job ==="
+
+                  WAZUH_POD="isiem-manager-master-0"
+                  LOG_SRC="/var/ossec/logs"
+                  TMP_DIR="/tmp/isiem-logs"
+
+                  mkdir -p "$TMP_DIR"
+
+                  echo "[1] Checking disk usage..."
+                  USAGE=$(kubectl exec -n isiem $WAZUH_POD -- \
+                    df -P "$LOG_SRC" | awk 'NR==2 {gsub("%",""); print $5}')
+
+                  echo "Current usage: ${USAGE}%"
+
+                  if [ "$USAGE" -lt 10 ]; then
+                    echo "Usage below threshold. Exiting."
+                    exit 0
+                  fi
+
+                  echo "[2] Copying logs from Wazuh manager..."
+                  kubectl cp -n isiem \
+                    $WAZUH_POD:$LOG_SRC \
+                    $TMP_DIR
+
+                  echo "[3] Authenticating to GCP..."
+                  gcloud auth activate-service-account \
+                    --key-file="$GOOGLE_APPLICATION_CREDENTIALS"
+
+                  echo "[4] Syncing logs to GCS (append-only)..."
+                  gsutil -m rsync -r -c \
+                    $TMP_DIR/ \
+                    gs://wazuh-logs-import/logs/
+
+                  echo "[5] Upload successful. Cleaning archived  logs..."
+                  kubectl exec -n isiem $WAZUH_POD -- sh -c '
+                    find /var/ossec/logs \
+                      -type f \
+                      \( -name "*.gz" -o -name "*.sum" \) \
+                      -mtime +1 \
+                      -delete
+                  '
+
+                  echo "✅ Job completed successfully"
+
+              env:
+                - name: GOOGLE_APPLICATION_CREDENTIALS
+                  value: /var/ossec/gcp-key.json
+              volumeMounts:
+                - name: gcp-key
+                  mountPath: /var/ossec/gcp-key.json
+                  subPath: gcp-key.json
+          volumes:
+            - name: gcp-key
+              secret:
+                secretName: gcp-service-account-key
+
