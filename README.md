@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:1a2f4a,100:0a7cf7&height=200&section=header&text=i-SIEM&fontSize=90&fontColor=ffffff&fontAlignY=38&desc=Self-Hosted%20In-House%20SIEM%20on%20Kubernetes&descAlignY=58&descSize=22&descColor=8ab4f8" alt="i-SIEM Banner"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:1a2f4a,100:0a7cf7&height=200&section=header&text=i-SIEM&fontSize=90&fontColor=ffffff&fontAlignY=38&desc=Self-Hosted%20In-House%20SIEM%20on%20Kubernetes&descAlignY=64&descSize=22&descColor=8ab4f8" alt="i-SIEM Banner"/>
 
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 [![Wazuh](https://img.shields.io/badge/Wazuh-005571?style=for-the-badge&logo=wazuh&logoColor=white)](https://wazuh.com/)
